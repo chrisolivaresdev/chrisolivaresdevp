@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { createContext, useContext, useState, useEffect } from "react"
+import { Code2, Users, Target, Lightbulb } from "lucide-react"
 
 type Language = "en" | "es"
 
@@ -45,6 +46,27 @@ const translations = {
     about: {
       title: "About Me",
       subtitle: "Passionate about creating digital experiences",
+      journeyTitle: "My Journey",
+      paragraphs: [
+        "As a Computer Engineering graduate with over 5 years of experience, I've dedicated my career to mastering the art of frontend development.",
+        "My expertise spans across Angular and React ecosystems, where I've built scalable, responsive applications that serve thousands of users daily.",
+        "Currently working at WCS and GlobalResources, I continue to push the boundaries of what's possible in web development.",
+      ],
+      coffee: "Fueled by coffee",
+      passion: "Powered by passion",
+      values: [
+        { title: "Clean Code", description: "Writing maintainable, scalable code following SOLID principles", icon: Code2 },
+        { title: "Team Player", description: "Collaborating effectively in agile environments with cross-functional teams", icon: Users },
+        { title: "Goal Oriented", description: "Focused on delivering high-quality solutions that exceed expectations", icon: Target, },
+        { title: "Innovation", description: "Always exploring new technologies and best practices in development", icon: Lightbulb, },
+      ],
+      quickFactsTitle: "Quick Facts",
+      quickFacts: [
+        { title: "Angular", label: "Primary Framework" },
+        { title: "React", label: "Secondary Expertise" },
+        { title: "Full Stack", label: "Development Approach" },
+        { title: "Agile", label: "Methodology Expert" },
+      ],
     },
 
     // Skills Section
@@ -153,6 +175,27 @@ const translations = {
     about: {
       title: "Acerca de Mí",
       subtitle: "Apasionado por crear experiencias digitales",
+      journeyTitle: "Mi Trayectoria",
+      paragraphs: [
+        "Como graduado en Ingeniería Informática con más de 5 años de experiencia, he dedicado mi carrera a dominar el arte del desarrollo frontend.",
+        "Mi experiencia abarca los ecosistemas de Angular y React, donde he construido aplicaciones escalables y responsivas que sirven a miles de usuarios diariamente.",
+        "Actualmente trabajando en WCS y GlobalResources, continuo expandiendo los límites de lo posible en el desarrollo web.",
+      ],
+      coffee: "Impulsado por el café",
+      passion: "Movido por la pasión",
+      values: [
+        { title: "Código Limpio", description: "Escribir código mantenible y escalable siguiendo principios SOLID", icon: Code2 },
+        { title: "Trabajo en Equipo", description: "Colaborar eficazmente en entornos ágiles con equipos multifuncionales", icon: Users },
+        { title: "Orientado a Metas", description: "Enfocado en entregar soluciones de alta calidad que superen expectativas", icon: Target },
+        { title: "Innovación", description: "Siempre explorando nuevas tecnologías y mejores prácticas en desarrollo", icon: Lightbulb },
+      ],
+      quickFactsTitle: "Datos Rápidos",
+      quickFacts: [
+        { title: "Angular", label: "Framework Principal" },
+        { title: "React", label: "Experiencia Secundaria" },
+        { title: "Full Stack", label: "Enfoque de Desarrollo" },
+        { title: "Agile", label: "Experto en Metodologías" },
+      ],
     },
 
     // Skills Section
