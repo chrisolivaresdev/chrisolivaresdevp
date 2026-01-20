@@ -39,15 +39,28 @@ export function Certifications() {
     selectedCategory === "all" ? certifications : certifications.filter((cert) => cert.category === selectedCategory)
 
   useEffect(() => {
+    let timers: NodeJS.Timeout[] = []
+
+    // If on a small screen (mobile), reveal items immediately instead of waiting for intersection
+    if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
+      setIsVisible(true)
+      filteredCertifications.forEach((_, index) => {
+        const t = setTimeout(() => setVisibleItems((prev) => [...prev, index]), index * 100)
+        timers.push(t)
+      })
+      return () => timers.forEach((t) => clearTimeout(t))
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
           // Animate items with staggered delay
           filteredCertifications.forEach((_, index) => {
-            setTimeout(() => {
+            const t = setTimeout(() => {
               setVisibleItems((prev) => [...prev, index])
             }, index * 100)
+            timers.push(t)
           })
         }
       },
@@ -58,19 +71,26 @@ export function Certifications() {
       observer.observe(sectionRef.current)
     }
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      timers.forEach((t) => clearTimeout(t))
+    }
   }, [filteredCertifications])
 
   // Reset visible items when category changes
   useEffect(() => {
+    let timers: NodeJS.Timeout[] = []
     setVisibleItems([])
     if (isVisible) {
       filteredCertifications.forEach((_, index) => {
-        setTimeout(() => {
+        const t = setTimeout(() => {
           setVisibleItems((prev) => [...prev, index])
         }, index * 100)
+        timers.push(t)
       })
     }
+
+    return () => timers.forEach((t) => clearTimeout(t))
   }, [selectedCategory, isVisible])
 
   return (
