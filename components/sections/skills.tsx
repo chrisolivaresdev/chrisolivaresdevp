@@ -1,77 +1,74 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState, useMemo } from "react"
+import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { useLanguage } from "@/components/language-context"
 
-export function Skills() {
+function SkillsComponent() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const { t } = useLanguage()
 
-  const skillCategories = [
-    {
-      title: t("skills.frontend"),
-      icon: "🎨",
-      skills: [
-        { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-        {
-          name: "Angular",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
-        },
-        {
-          name: "TypeScript",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-        },
-        {
-          name: "JavaScript",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-        },
-        { name: "HTML5", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-        { name: "CSS3", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-        {
-          name: "Tailwind CSS",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
-        },
-      ],
-    },
-    {
-      title: t("skills.backend"),
-      icon: "⚙️",
-      skills: [
-        { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-        { name: "Express.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-        { name: ".NET", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" },
-        { name: "C#", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
-      ],
-    },
-    {
-      title: t("skills.database"),
-      icon: "🛠️",
-      skills: [
-        { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-        {
-          name: "SQL Server",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
-        },
-        { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-        { name: "GitHub", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-        { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-      ],
-    },
-  ]
+  const skillCategories = useMemo(
+    () => [
+      {
+        title: t("skills.frontend"),
+        icon: "🎨",
+        skills: [
+          { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+          {
+            name: "Angular",
+            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+          },
+          {
+            name: "TypeScript",
+            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+          },
+          {
+            name: "JavaScript",
+            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+          },
+          { name: "HTML5", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+          { name: "CSS3", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+          {
+            name: "Tailwind CSS",
+            logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tailwindcss.svg",
+          },
+        ],
+      },
+      {
+        title: t("skills.backend"),
+        icon: "⚙️",
+        skills: [
+          { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+          { name: "Express.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+          { name: ".NET", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" },
+          { name: "C#", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
+        ],
+      },
+      {
+        title: t("skills.database"),
+        icon: "🛠️",
+        skills: [
+          { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+          {
+            name: "SQL Server",
+            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
+          },
+          { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+          { name: "GitHub", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+          { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+        ],
+      },
+    ],
+    [t],
+  )
 
-  const softSkills = [
-    "Problem Solving",
-    "Team Leadership",
-    "Code Review",
-    "Agile/Scrum",
-    "Communication",
-    "Mentoring",
-    "Project Management",
-    "Technical Writing",
-  ]
+  const { translations } = useLanguage()
+
+  const softSkills = useMemo(() => translations?.skills?.softSkillsList ?? [], [translations])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -129,14 +126,14 @@ export function Skills() {
                       }`}
                       style={{ animationDelay: `${categoryIndex * 200 + skillIndex * 100}ms` }}
                     >
-                      <img
+                      <Image
                         src={skill.logo || "/placeholder.svg"}
                         alt={skill.name}
-                        className="w-12 h-12 mb-2 object-contain"
-                        onError={(e) => {
-                          // Fallback if logo fails to load
-                          e.currentTarget.style.display = "none"
-                        }}
+                        width={48}
+                        height={48}
+                        className="mb-2 object-contain"
+                        unoptimized
+                        loading="lazy"
                       />
                       <span className="font-medium text-sm text-center">{skill.name}</span>
                     </div>
@@ -201,3 +198,5 @@ export function Skills() {
     </section>
   )
 }
+
+export const Skills = React.memo(SkillsComponent)

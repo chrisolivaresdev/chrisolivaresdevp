@@ -31,21 +31,21 @@ export function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      label: "Email",
+      label: t("contact.emailLabel"),
       value: "chrisolivaresdev@gmail.com",
       href: "mailto:chrisolivaresdev@gmail.com",
       color: "text-primary",
     },
     {
       icon: Github,
-      label: "GitHub",
+      label: t("contact.githubLabel"),
       value: "github.com/chrisolivaresdev",
       href: "https://github.com/chrisolivaresdev",
       color: "text-foreground",
     },
     {
       icon: Linkedin,
-      label: "LinkedIn",
+      label: t("contact.linkedinLabel"),
       value: "linkedin.com/in/chrisolivaresdev",
       href: "https://www.linkedin.com/in/chrisolivaresdev/",
       color: "text-blue-600",

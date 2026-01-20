@@ -1,11 +1,11 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState, useMemo } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Heart, Coffee, Code2 } from "lucide-react"
+import { Heart, Coffee, Code2, Users, Target, Lightbulb } from "lucide-react"
 import { useLanguage } from "@/components/language-context"
 
-export function About() {
+function AboutComponent() {
   const { t, translations } = useLanguage()
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
@@ -27,7 +27,11 @@ export function About() {
     return () => observer.disconnect()
   }, [])
 
-  const values = translations?.about?.values ?? []
+  const iconList = [Code2, Users, Target, Lightbulb]
+  const values = useMemo(
+    () => (translations?.about?.values ?? []).map((v: any, i: number) => ({ ...v, icon: iconList[i] ?? Code2 })),
+    [translations],
+  )
 
   return (
     <section id="about" ref={sectionRef} className="py-20 bg-muted/30">
@@ -133,3 +137,5 @@ export function About() {
     </section>
   )
 }
+
+export const About = React.memo(AboutComponent)

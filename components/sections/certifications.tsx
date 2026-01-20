@@ -14,107 +14,7 @@ export function Certifications() {
   const sectionRef = useRef<HTMLElement>(null)
   const { language, translations } = useLanguage()
 
-  const certifications = [
-    {
-      id: 1,
-      title: "Angular Professional",
-      provider: "Platzi",
-      category: "frontend",
-      date: "2023",
-      level: "Advanced",
-      description: "Advanced Angular concepts, architecture patterns, and best practices",
-      skills: ["Angular", "TypeScript", "RxJS", "NgRx"],
-      color: "from-red-500 to-red-600",
-    },
-    {
-      id: 2,
-      title: "React.js Professional",
-      provider: "Platzi",
-      category: "frontend",
-      date: "2023",
-      level: "Advanced",
-      description: "Modern React development with hooks, context, and performance optimization",
-      skills: ["React", "JavaScript", "Hooks", "Context API"],
-      color: "from-blue-500 to-blue-600",
-    },
-    {
-      id: 3,
-      title: "JavaScript Professional",
-      provider: "Platzi",
-      category: "frontend",
-      date: "2022",
-      level: "Advanced",
-      description: "Advanced JavaScript concepts, ES6+, and modern development practices",
-      skills: ["JavaScript", "ES6+", "Async/Await", "Modules"],
-      color: "from-yellow-500 to-yellow-600",
-    },
-    {
-      id: 4,
-      title: "TypeScript Professional",
-      provider: "Platzi",
-      category: "frontend",
-      date: "2023",
-      level: "Advanced",
-      description: "Type-safe development with TypeScript for scalable applications",
-      skills: ["TypeScript", "Interfaces", "Generics", "Decorators"],
-      color: "from-blue-600 to-blue-700",
-    },
-    {
-      id: 5,
-      title: "Node.js Backend Development",
-      provider: "Platzi",
-      category: "backend",
-      date: "2022",
-      level: "Intermediate",
-      description: "Server-side development with Node.js and Express.js",
-      skills: ["Node.js", "Express.js", "APIs", "Authentication"],
-      color: "from-green-500 to-green-600",
-    },
-    {
-      id: 6,
-      title: "Database Design & MongoDB",
-      provider: "Platzi",
-      category: "backend",
-      date: "2022",
-      level: "Intermediate",
-      description: "Database design principles and MongoDB implementation",
-      skills: ["MongoDB", "Database Design", "Aggregation", "Indexing"],
-      color: "from-green-600 to-green-700",
-    },
-    {
-      id: 7,
-      title: "Git & GitHub Professional",
-      provider: "Platzi",
-      category: "tools",
-      date: "2021",
-      level: "Advanced",
-      description: "Version control mastery and collaborative development workflows",
-      skills: ["Git", "GitHub", "Branching", "Collaboration"],
-      color: "from-gray-600 to-gray-700",
-    },
-    {
-      id: 8,
-      title: "Web Performance Optimization",
-      provider: "Platzi",
-      category: "frontend",
-      date: "2023",
-      level: "Advanced",
-      description: "Techniques for optimizing web application performance and user experience",
-      skills: ["Performance", "Optimization", "Lighthouse", "Core Web Vitals"],
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      id: 9,
-      title: "Agile Methodologies & Scrum",
-      provider: "Platzi",
-      category: "methodology",
-      date: "2022",
-      level: "Intermediate",
-      description: "Agile development practices and Scrum framework implementation",
-      skills: ["Scrum", "Agile", "Sprint Planning", "Team Collaboration"],
-      color: "from-orange-500 to-orange-600",
-    },
-  ]
+  const certifications = translations.certifications.items || []
 
   const categories = [
     { id: "all", label: translations.certifications.allCerts, count: certifications.length },
@@ -132,11 +32,6 @@ export function Certifications() {
       id: "tools",
       label: translations.certifications.tools,
       count: certifications.filter((c) => c.category === "tools").length,
-    },
-    {
-      id: "methodology",
-      label: translations.certifications.methodology,
-      count: certifications.filter((c) => c.category === "methodology").length,
     },
   ]
 
@@ -309,14 +204,15 @@ export function Certifications() {
                 </div>
 
                 <div className="pt-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="w-full text-primary hover:text-primary-foreground hover:bg-primary transition-colors duration-200"
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full text-primary hover:text-primary-foreground hover:bg-primary transition-colors duration-200 rounded-md px-3 py-2"
                   >
                     <ExternalLink className="h-4 w-4 mr-2" />
                     {translations.certifications.viewCert}
-                  </Button>
+                  </a>
                 </div>
               </CardContent>
             </Card>
