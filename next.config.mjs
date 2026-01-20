@@ -6,8 +6,13 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // Allows exporting a fully static site via `next export` when possible.
+  output: "export",
+  trailingSlash: true,
   images: {
-    unoptimized: false,
+    // Next image optimization is not available for static exports.
+    // Set to true to avoid runtime dependency on the image optimizer.
+    unoptimized: true,
     domains: [
       "cdn.jsdelivr.net",
       "hebbkx1anhila5yf.public.blob.vercel-storage.com",
