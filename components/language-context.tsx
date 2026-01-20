@@ -14,7 +14,7 @@ interface LanguageContextType {
   translations: typeof translations.en
 }
 
-const translations = {
+export const translations = {
   en: {
     // Navigation
     nav: {
