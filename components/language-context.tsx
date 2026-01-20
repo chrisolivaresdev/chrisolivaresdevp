@@ -136,7 +136,7 @@ export const translations = {
           type: "Full Time",
           period: "Oct 2023 - Present",
           location: "Colombia",
-          current: true,
+          current: false,
           description: [
             "Implemented interactive and responsive user interfaces using Angular and React with Next.js",
             "Designed and developed reusable components to improve efficiency and consistency in frontend development",
@@ -813,7 +813,7 @@ export const translations = {
           type: "Tiempo Completo",
           period: "Oct 2023 - Presente",
           location: "Colombia",
-          current: true,
+          current: false ,
           description: [
             "Implementé interfaces de usuario interactivas y responsivas usando Angular y React con Next.js",
             "Diseñé y desarrollé componentes reutilizables para mejorar la eficiencia y consistencia en el desarrollo frontend",
